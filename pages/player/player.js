@@ -249,8 +249,7 @@ Page({
 
     //音频部分
     //console.log("that.data.video.audiourl:" + that.data.video.audiourl);
-
-
+    
     backgroundAudioManager.onCanplay(function () {
       console.log("onCanplay");
       // backgroundAudioManager.pause();
