@@ -1,0 +1,54 @@
+<!--pages/classify/classify.wxml-->
+<view class='header' bindtap='search'>
+  <view class="search" style="height:{{height/16}}px">
+    <icon type="search" size="16" /> 搜索视频
+  </view>
+</view>
+<view class="content">
+  <view class="nav_left" style="height:{{height*1.1}}px;">
+    <scroll-view scroll-y>
+      <block wx:for="{{types.category}}" wx:key="{{index}}">
+        <view class="nav_left_items {{curNav == index ? 'active' : ''}}" bindtap="switchRightTab" data-index="{{index}}" data-type='{{item}}'>{{item.name}}</view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class="nav_right" style="width:78%">
+    <view style="height:36px;;padding-left:30px;padding-top:3px;margin-bottom:10px;color:#black;font-weight: 400;background-color:#d7d7d7;">
+      <text class='hasclick'>{{clickItem}}</text>
+    </view>
+    <view>
+      <block wx:for-items="{{types.video}}" wx:for-item="goods" wx:key="{{goods.id}}">
+        <block wx:if="{{goods.category.id==clickId}}">
+          <view class=".nav_right_items" style='width:100%;display:flex;justify-content: space-between;' data-videoid="{{goods.id}}" bindtap='player'>
+            <view style="display:flex;width:100%;align-items:center;">
+              <view class="img" style='width:{{width*0.3}}px;height:{{height*0.15}}px'>
+                <block wx:if="{{goods.imgurl}}">
+                  <image src="{{urlimg}}{{goods.imgurl}}" mode='widthFix' style="width:100%;"></image>
+                </block>
+                <block wx:else>
+                  <image alt="暂无图片"></image>
+                </block>
+              </view>
+              <view class="introduction" style='width:70%;'>
+                <view class="name" >
+                 <text style="font-size:12pt;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;-webkit-box-orient: vertical;-webkit-line-clamp:1;">{{goods.name}}</text>
+                </view>
+                <view class="preach" style='display:flex; align-items: center'>
+                  <text>讲师：{{goods.preach.name}}</text>
+                </view>
+                <view style='display:flex;justify-content: space-between;align-items:center;' > 
+                <view class="playcount"style='display:flex; align-items:center;'>
+                 <text> 播放次数：{{goods.playcount}}</text>
+                </view>
+                 <view class="price">
+              ￥{{goods.price}}
+            </view></view>
+              </view>
+            </view>
+           
+          </view>
+        </block>
+      </block>
+    </view>
+  </view>
+</view>

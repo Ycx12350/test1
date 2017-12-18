@@ -1,0 +1,11 @@
+<template name="empty">
+  <view class="empty flexboxcol">
+    <image src="{{empty.image}}" mode='widthFix' style="width:30%;" />
+    <view class="content">
+      <text>{{empty.text}}</text>
+    </view>
+    <view class='btn'>
+      <button size='mini'bindtap='empty'>{{empty.btntext}}</button>
+    </view>
+  </view>
+</template>

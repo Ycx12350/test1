@@ -1,0 +1,119 @@
+/* pages/search/search.wxss */
+
+.search {
+  margin: 0 1px;
+  display: flex;
+  border-radius: 20px;
+  justify-content: flex-start;
+  padding: 0 5px;
+  align-items: center;
+  color: grey;
+  font-size: 13px;
+  background-color: whitesmoke;
+}
+
+.search icon {
+  padding: 0 3px;
+}
+
+.search-button {
+  background-color: red;
+  color: white;
+  
+}
+
+.header {
+  padding: 5px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 10%;
+}
+
+.box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.box .left {
+  font-size: 14px;
+  color: gray;
+}
+
+.box .right {
+  font-size: 11px;
+  color: red;
+}
+
+.col {
+  flex-direction: column;
+  padding: 0 20px;
+}
+
+.body {
+  padding: 5px 20px;
+  box-shadow: 3px 3px 6px whitesmoke;
+}
+
+.title {
+  padding-top: 15rpx;
+  color: black;
+  font-size: 15px;
+}
+
+.playcount {
+  color: black;
+  font-size: 12px;
+  padding-bottom: 10px;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #0097fe;
+  font-size: 15px;
+  padding-bottom: 25rpx;
+}
+
+.img-box {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.intro {
+  color: grey;
+  font-size: 13px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.center {
+  align-items: center;
+  padding: 5px 0px;
+}
+
+.message {
+  flex: 1;
+  width: 100%;
+}
+
+.message .nav_right_items {
+  float: left;
+  text-align: center;
+  box-shadow: 2px 2px 3px whitesmoke;
+  margin: 6px;
+  background-color: whitesmoke;
+}
+
+.message .nav_right_items text {
+  display: block;
+  padding: 3px 6px;
+  font-size: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

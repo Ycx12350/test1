@@ -1,0 +1,59 @@
+<!--pages/my/my.wxml-->
+<view class="toast_mask" wx:if="{{isShowToast}}"></view>
+<!--以下为toast显示的内容-->
+<view class="toast_content_box" wx:if="{{isShowToast}}">
+  <view class="toast_content">
+    <view class="toast_content_text">
+      您还没有登录！
+    </view>
+  </view>
+</view>
+<view class='header' style="height:{{height*0.3}}px">
+  <view class="userinfo">
+    <block wx:if='{{userInfo}}'>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <view>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text><text wx:if="{{isvip==1}}" style='color:white;font-size:9pt;background-color:#f7ca18'>vip</text> </view></block>
+    <block wx:else>
+      <button open-type="getUserInfo" style='color:black;font-size:13px' bindgetuserinfo="getUserInfo">注册/登录</button>
+    </block>
+  </view>
+</view>
+<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+<view wx:if="{{isvip==0}}" class="tovip" style="border-bottom: 8px solid #e9e9e9;">
+  <text>开通会员</text>
+  <view data-flag='Pay' catchtap='myopera' class="text2">去开通 ></view>
+</view>
+<view class="order">
+  <view class="top box" style="border-bottom:1px solid #e9e9e9;">
+    <text>观看历史</text>
+    <view data-flag='History' catchtap='myopera' class="text2">{{historylist.length>2?'更多':'查看'}} ></view>
+  </view>
+  <view wx:if="{{historylist.length>0}}" style='width:100%;'>
+    <view class="href">
+      <block wx:for="{{historylist}}" wx:for-item="page" wx:key="item">
+        <block wx:if="{{index<3}}">
+          <view class="loop" data-videoid="{{page.video.id}}" bindtap="jump">
+            <view style="width: {{width/3.2}}px;">
+              <view style='height:{{height*0.15}}px;display:flex; justify-content: center;align-items:center;overflow:hidden;'>
+                <image src="{{imgurl}}{{page.video.imgurl}}" mode="widthFix" style="width:{{width/3.8}}px;"></image>
+              </view>
+              <text class='href-text'>{{page.video.name}}</text>
+            </view>
+          </view>
+        </block>
+      </block>
+    </view>
+  </view>
+  <view wx:else style="padding:20rpx;color:#d7d7d7;font-size:12pt;">暂无任何记录</view>
+</view>
+<view class="tovipvideo" style="border-top: 8px solid #e9e9e9;border-bottom: 1px solid #e9e9e9;">
+  <text>购买的视频</text>
+  <view url='../showrecord/showrecord?targetpage=Expense' data-flag='Expense' catchtap='myopera' class="text2">查看 ></view>
+</view>
+<view class="tovipvideo" style="">
+  <text>收藏的视频</text>
+  <view url='../showrecord/showrecord?targetpage=Collect' data-flag='Collect' catchtap='myopera' class="text2">查看 ></view>
+</view>
+<!-- <view style='background-color:lightgray;height:6pt;'></view> -->
+<view style="background-color:#efeff4;width:{{width}}px;height:{{height}}px;position:fixed;bottom:0px;z-index:-1"></view>

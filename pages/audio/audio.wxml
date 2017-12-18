@@ -1,0 +1,12 @@
+<!--pages/audio/audio.wxml-->
+<text>pages/audio/audio.wxml</text>
+<view>
+  <button bindtap='start'>{{btntext}}</button>
+  <button bindtap='stop'>停止</button>
+</view>
+<view>
+  <slider min="0" max="{{duration}}" value="{{playtime}}" bindchange='seek' bindtouchstart='touchstart' bindtouchend='touchend'></slider>
+</view>
+<view>
+<text>{{formatedPlayTime}}</text><text>{{formatedDurationTime}}</text>
+</view>

@@ -1,0 +1,51 @@
+<!--index.wxml-->
+<import src="../../temp/empty.wxml" />
+<view hidden="{{loading}}" style='text-align:center'>正在加载中...</view>
+<block wx:if="{{list.length>0}}">
+  <view style='display:flex; justify-content: space-between;padding:5px 20px;'>
+    <view catchlongpress='opera'>编辑</view>
+    <view hidden='{{!choose}}' catchtap='cannel'>取消</view>
+  </view>
+  <scroll-view scroll-y style="height:{{height*0.9}}px;">
+    <block wx:for="{{list}}" wx:for-item="list" wx:key="item">
+      <view class="goods" style='box-shadow: 2px 2px 3px lightgrey;' data-videoid="{{list.video.id}}" bindtap="jump">
+        <view class="check-text" style="align-items:center;">
+          <view wx:if='{{choose}}' class="select">
+            <view bindtap='select' data-index='{{index}}'>
+              <icon type="{{select[index]?'success':'circle'}}" size="20" />
+            </view>
+          </view>
+          <view class='img'>
+            <view style='display:flex;height:{{height*0.2}}px;overflow: hidden;align-items:center;'>
+              <image src="{{urlimg}}{{list.video.imgurl}}" class="pic-item" mode="widthFix" style="width:{{width/3.5}}px;"></image>
+            </view>
+          </view>
+          <view class='middle'>
+            <view class='title'>
+              {{list.video.name}}
+            </view>
+            <view class="preach" style="font-size:11pt; color:lightgrey">讲师：{{list.video.preach.name}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="cut"></view>
+    </block>
+  </scroll-view>
+  <view wx:if='{{choose}}' class="tar" style='width:100%;position:fixed;bottom:0px;'>
+    <view style='display:flex;margin-left:10px;' class="bottom-tar" bindtap="allchoose">
+      <view style='display:flex;align-items:center;'>
+        <view>
+          <icon type="{{allchoose?'success':'circle'}}" class='allchoose' size='20'></icon>
+        </view>全选
+      </view>
+    </view>
+    <view class="total" style='display:flex;'>
+      <view style="padding: 0 10px">
+        <button type="warn" class="pay" bindtap="deleterecord" data-index='-1'>删除</button>
+      </view>
+    </view>
+  </view>
+</block>
+<block wx:if='{{loading&&list.length==0}}'>
+  <view style="text-align:center;">暂无任何记录</view>
+</block>

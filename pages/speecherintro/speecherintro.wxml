@@ -1,0 +1,12 @@
+<!--pages/speecherintro/speecherintro.wxml-->
+
+  <video id="video" style='width:100%;' src="{{videourl}}{{preach.videourl}}" control ></video>
+<view class='container'>
+  <view class='title'>讲师简介</view>
+  <text class='intor' decode>&emsp;&emsp;{{preach.introduction}}</text>
+  <view class='qr'>
+    <text>加{{preach.name}}微信</text>
+    <image src='{{videourl}}{{preach.qrurl}}' style='width:120px;height:120px' ></image>
+  
+  </view>
+</view>

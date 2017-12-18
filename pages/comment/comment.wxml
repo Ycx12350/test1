@@ -1,0 +1,10 @@
+<!--pages/comment/comment.wxml-->
+<view class='body' style='width:{{width}}px;'>
+  <view class="section">
+    <form bindsubmit="formSubmit">
+      <textarea placeholder="您的评论将对所有人可见" name="comments" value="{{comments}}"/>
+      <button form-type="submit"> 提交 </button>
+    </form>
+  </view>
+</view>
+

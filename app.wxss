@@ -1,0 +1,93 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box
+}
+
+page {
+}
+
+/*为空的组件*/
+
+.flexboxcol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.flexbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.empty {
+  margin: 150rpx 0;
+}
+.empty .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+}
+.empty .btn button{
+  background-color: #F08080;
+  color: white;
+}
+.empty .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty .content text {
+  color: #bbb;
+  font-size: 14px;
+}
+
+.empty .content .text1 {
+  position: relative;
+  top: 10rpx;
+}
+/*mask  自定义toast*/
+
+.toast_mask {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 888;
+}
+
+/*toast*/
+
+.toast_content_box {
+  position: fixed;
+  top: 0%;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.toast_content {
+  padding: 20rpx;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 20rpx;
+}
+
+.toast_content_text {
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+}

@@ -1,0 +1,190 @@
+<!--pages/player/player.wxml-->
+
+<view class='titlebutton'>
+  <view class="{{isChecked1}}" bindtap="toggle1" style='border-right: 1px solid 	#f7941e;'>视频</view>
+  <view class="{{isChecked2}}" bindtap="toggle2" style='border-right: 1px solid 	#f7941e;'>音频</view>
+  <view class="{{isChecked3}}" bindtap="toggle3">图文</view>
+
+</view>
+<view wx:if="{{type=='视频'}}">
+
+  <block wx:if="{{!vip&&ispay==0}}">
+    <view class='drawer_screen' style='height:225px' hidden="{{novip}}">
+      <view style="width:100%;height:225px;overflow:hidden;display:flex;align-items:center">
+      </view>
+    </view>
+    <view hidden="{{novip}}" class='drawer_content' style='position:fixed;top:42px;height:225px;width:100%'>
+      <view></view>
+      <view>
+        <view class="tip">VIP会员可以免费观看</view>
+        <view style='display:flex;justify-content:center;'>
+          <block wx:if="{{userid}}">
+            <view class=" button " style='background-color:grey;color:white;font-size:11px;' bindtap='trywatch'>试看{{trywatch}}秒</view>
+            <view class="button " style='background-color:#f7941e;color:white;font-size:11px' bindtap='jump'>开通VIP会员</view>
+          </block>
+          <block wx:else>
+            <button open-type="getUserInfo" style='color:white;font-size:13px;background-color:#00BFFF' bindgetuserinfo="getUserInfo">注册/登录</button>
+          </block>
+        </view>
+      </view>
+      <view class="time ">
+        <text style='padding-right:20px;'>上架时间：{{video.publicdate}}</text>
+      </view>
+    </view>
+    <video id="tryvideo" hidden="{{!novip}}" style='width:100%;display:absolute;top:42px' src="{{imgurl}}{{video.videourl}}" control bindtimeupdate="limit" duration='{{trywatch}}'></video>
+  </block>
+  <block wx:else>
+    <video id="video" style='width:100%;display:absolute;top:42px' src="{{imgurl}}{{video.videourl}}" control bindtimeupdate="nolimit"></video>
+  </block>
+  <view class="toast_mask" wx:if="{{isShowToast}}"></view>
+  <!--以下为toast显示的内容-->
+  <view class="toast_content_box" wx:if="{{isShowToast}}">
+    <view class="toast_content">
+      <view class="toast_content_text">{{toasttext}}</view>
+    </view>
+  </view>
+  <scroll-view scroll-y style='position:absolute;top:267px;height:{{height-317}}px;'>
+    <swiper class="swiper_container" vertical="true" autoplay="true" circular="true" interval="2000">
+      <block wx:for="{{msgList}}" wx:key="{{index}}">
+        <swiper-item>
+          <view class="swiper_item">公告：{{item.message}}</view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="body " style='width:100%'>
+      <view class='pad'>
+        <view style="display:flex;justify-content: space-between;">
+          <view style='font-weight:500;font-size:18px;'>{{video.name}}</view>
+          <!--<view wx:if="{{collectflag==1}}" class="coll1">已收藏</view>
+            <view wx:else class="coll" data-videoid="{{vvid}}" bindtap='tocollect'>收藏</view>-->
+        </view>
+
+        <view style='display:flex;font-size:11pt;padding-top:15rpx;padding-bottom:15rpx;align-items:center;'>
+          <view class="aaa" style="align-items:center;">
+            <view style="width:{{width*0.04}}px;padding-right:6px;">
+              <image src="image/x_ren.png" mode="widthFix" style="width:100%;"></image>
+            </view>
+            {{video.preach.name}}
+          </view>
+          <view class="aaa" style="align-items:center;">
+            <view style="width:{{width*0.04}}px;padding-right:6px;">
+              <image src="image/x_bofang.png" mode="widthFix" style="width:100%;"></image>
+            </view>播放量:{{playcount}}</view>
+          <view class="aaa" style="align-items:center;">
+            <view style="width:{{width*0.04}}px;padding-right:6px;">
+              <image src="image/x_buy.png" mode="widthFix" style="width:100%;"></image>
+            </view>{{paycount}}人已购买</view>
+        </view>
+        <view class='price'>￥{{video.price}}</view>
+        <view class="line" style="width:100%;"></view>
+        <view class='title'>讲师简介</view>
+        <text class='intor' decode>&emsp;&emsp;{{video.preach.introduction}}</text>
+        <view class='qr'>
+          <text>加白老师微信</text>
+          <image src='image/qr.png' style='width:120px;height:120px'></image>
+        
+        </view>
+        <view class='title'>视频简介</view>
+        <text class='intor' decode>&emsp;&emsp;{{video.introduction}}</text>
+        <view style="height:{{height*0.1}}px;"></view>
+
+      </view>
+    </view>
+    <view wx:if="{{ispay==0}}" class="tar ">
+      <view catchtap='topay'>首次购买：￥{{video.price}}</view>
+    </view>
+  </scroll-view>
+</view>
+
+
+<view class='diobody' wx:if="{{type=='音频'}}">
+  <scroll-view scroll-y style='height:{{height-92}}px;'>
+    <view class='diocontent'>
+      <image style="width: 100%;" src="{{imgurl}}{{video.audiobanurl}}" mode="widthFix" />
+    </view>
+    <view class='audioview'>
+      <view class="audioimage" style='background-image: url({{imgurl}}{{video.imgurl}});'>
+        <image bindtap='start' src='{{playbtnimg}}' style='width:30px;height:30px;'></image>
+      </view>
+      <view style='width:70%'>
+        <view class='audiorightline1'>
+          <text>{{video.name}}</text>
+        </view>
+        <view>
+          <slider min="0" max="{{duration}}" value="{{playtime}}" bindchange='seek' bindtouchstart='touchstart' bindtouchend='touchend'></slider>
+        </view>
+        <view class='audiorightline3'>
+          <text>{{formatedPlayTime}}</text>
+          <text>{{formatedDurationTime}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='diocontent'>
+      <text>{{video.name}}</text>
+    </view>
+    <view class='diocontent' style='border-top:1px solid #d7d7d7'></view>
+    <view class='diocontent'>
+      <image style="width: 100%;" src='{{imgurl}}{{video.audiopicurl}}' mode="widthFix" />
+    </view>
+    <view class='diocontent'>
+      <text class='diotitle'>{{video.title}}</text>
+    </view>
+    <view class='diocontent'>
+      <text class='contentfont' decode>&emsp;&emsp;{{video.audiotext}}
+</text>
+    </view>
+  </scroll-view>
+</view>
+
+
+<view class='diobody' wx:if="{{type=='图文'}}">
+  <scroll-view scroll-y style='height:{{height-92}}px;'>
+    <view class='diocontent'>
+      <image style="width: 100%;" src='{{imgurl}}{{video.pictextban}}' mode="widthFix" />
+    </view>
+    <view class='diocontent'>
+      <text>{{video.name}}</text>
+    </view>
+    <view class='diocontent' style='border-top:1px solid #d7d7d7'></view>
+    <view wx:for="{{pictext}}" wx:for-item="items">
+      <view class='diocontent'>
+        <image src='{{imgurl}}{{items.imageurl}}' style='width:100%' mode="widthFix"></image>
+      </view>
+      <view class='diocontent'>
+        <text class='diotitle'>{{items.title}}</text>
+      </view>
+      <view class='diocontent'>
+        <text class='contentfont' decode>&emsp;&emsp;{{items.text}}</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<!--评论取-->
+<view class='comment'>
+
+  <view style='display:flex;flex-direction:row'>
+
+    <view wx:if="{{collectflag==1}}" class='comment-icon'>
+      <image src="image/shou_c.png" mode="widthFix" style="width:20px;"></image>
+      <text>已收藏</text>
+    </view>
+    <view wx:else class='comment-icon' data-videoid="{{vvid}}" bindtap='tocollect'>
+      <image src="image/shou.png" mode="widthFix" style="width:20px;"></image>
+      <text>收藏</text>
+    </view>
+
+    <view wx:if="{{iscollect==0}}" class='comment-icon' bindtap='iscollect'>
+      <image src="image/zan.png" mode="widthFix" style="width:20px;"></image>
+      <text>{{video.upvotecount}}</text>
+    </view>
+    <view wx:else class='comment-icon'>
+      <image src="image/zan_c.png" mode="widthFix" style="width:20px;"></image>
+      <text>{{video.upvotecount+1}}</text>
+    </view>
+    <view class='comment-icon' bindtap='commentjump'>
+      <image src="image/pin.png" mode="widthFix" style="width:20px;"></image>
+      <text>评论</text>
+    </view>
+  </view>
+</view>

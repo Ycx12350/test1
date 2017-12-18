@@ -1,0 +1,113 @@
+/* pages/my/my.wxss */
+
+.header {
+  padding: 7% 0p;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f7941e;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+  border: 1px solid white;
+}
+
+.userinfo-nickname {
+  color: white;
+}
+
+.order {
+  background-color: white;
+}
+
+.box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order .top {
+  padding: 0 20rpx;
+  height: 93rpx;
+  background: #fff;
+}
+
+.top {
+  font-size: 10pt;
+  color: #bbb;
+}
+.top text{
+  font-size:13pt;  
+  padding: 0 20rpx;
+  color: #333;
+}
+.href {
+  display: flex;
+  flex-direction: row;
+  padding: 8px 10px;
+}
+
+.loop {
+  text-align: center;
+}
+
+.href-text {
+  color: grey;
+  font-size: 8pt;
+}
+
+.tovip {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20rpx;
+  height: 93rpx;
+  font-size: 10pt;
+  color: #f7941e;
+  margin-top: 1rpx; 
+}
+.tovip text{
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20rpx;
+  height: 93rpx;
+  font-size: 13pt;
+  margin-top: 1rpx; 
+}
+
+.tovipvideo {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20rpx;
+  height: 93rpx;
+  font-size: 10pt;
+  margin-top: 1rpx; 
+  color: #999;
+}
+.tovipvideo text{
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20rpx;
+  height: 93rpx;
+  font-size: 13pt;
+  margin-top: 1rpx;
+  color: #333;
+}

@@ -1,0 +1,14 @@
+<!--pages/commentlie/commentlie.wxml-->
+<view class='title' style='width:{{width*0.95}}px;'>评论</view>
+  <view class='body' wx:for="{{commentlist}}" wx:for-item="items">
+    <image src="{{items.user.userpic}}" style='width:{{width/8}}px;border-radius: 50%;margin-right:10px' mode="widthFix"></image>
+  <view class='commenttext'>
+    <text>{{items.user.username}}</text>
+    <text class='commentcontainer'>{{items.comments}}</text>
+  </view>
+</view>
+
+<view class="commentinput" bindtap='commentjump'>
+  <text class='input'>点击发表您的意见</text>
+  
+</view>

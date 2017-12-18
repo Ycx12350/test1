@@ -1,0 +1,60 @@
+<!--pages/search/search.wxml-->
+<view class='header'>
+  <view class="search" style="height:{{height/16}}px;width:72%;">
+    <icon type="search" size="16" />
+    <input focus='{{true}}' style="height:{{height/16}}px;width:100%;" confirm-type='search' bindinput='input' value="{{input}}" bindconfirm='search' bindtap='hide'>
+    </input>
+    <icon type="clear" size="16" bindtap="clear" />
+  </view>
+  <view style="display: flex;align-items: center;">
+    <button wx:if='{{input}}' class='search-button' size='mini' catchtap='search'>搜索</button>
+    <button wx:else size='mini' catchtap='back'>取消</button>
+  </view>
+</view>
+<block wx:if='{{!input}}'>
+  <view class='box col'>
+    <block wx:if="{{history}}">
+      <view class='box center'>
+        <text class='left'>历史搜索</text>
+        <text class='right' catchtap='clearhistory'>清空</text>
+      </view>
+      <view class="message">
+        <block wx:for="{{history}}" wx:key="{{index}}">
+          <view class=".nav_right_items" style='max-width:{{width/4}}px;' catchtap='search' data-word='{{item}}'>
+            <text>{{item}}</text>
+          </view>
+        </block>
+      </view>
+    </block>
+    <view class='box center'>
+      <text class='left'>热门搜索</text>
+      <text class='right'>换一批</text>
+    </view>
+  </view>
+</block>
+<view hidden='{{hide}}'>
+  <view style='height:2px;background-color:lightgrey'></view>
+  <block wx:if='{{load}}'>
+    <view style='display:flex;justify-content: center;color:lightgrey'>加载中</view>
+  </block>
+  <block wx:if='{{querylist.length>0}}' wx:key="{{index}}">
+    <view wx:for="{{querylist}}" wx:for-item="good" wx:key="{{good.id123}}" class='box body' bindtap='jump' data-videoid='{{good.id}}'>
+      <view style='display:flex'>
+        <view style='height:{{height*0.2}}px;display: flex;align-items: center;overflow:hidden;'>
+          <view class='img-box' >
+            <image src='{{imgurl}}{{good.imgurl}}' mode='widthFix' style='width:{{width*0.3}}px'></image>
+          </view>
+        </view>
+        <view style='display:flex;justify-content: space-between;padding:5px 5px;' class="col">
+          <view class='title'> {{good.name}}</view>
+          <view class='intro'>讲师：{{good.preach.name}}</view>
+          <view class='playcount'>播放次数：{{good.playcount}}</view>
+        </view>
+      </view>
+      <view class='price'>￥{{good.price}}</view>
+    </view>
+  </block>
+  <block wx:else>
+    <view style='display:flex;justify-content: center;color:lightgrey'>抱歉没有搜到相关视频</view>
+  </block>
+</view>

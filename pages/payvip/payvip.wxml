@@ -1,0 +1,20 @@
+<!--pages/payvip/payvip.wxml-->
+<view class="poster" style="width:100%;">
+  <image src="image/vip_tu.jpg" mode="widthFix" style="width:100%;"></image>
+</view>
+<view class="paycount">
+  <view class="total">累计付费学员</view>
+  <view style="display:flex;justify-content: center;">
+    <block wx:for="{{aa}}" wx:item="{{item}}" wx:key="{{index}}">
+      <view class="count" style= "background-color:white;width:{{width/(aa.length+5)}}px;font-size:{{width/(aa.length+5)}}pt;"> <view style='position:relative; top:0px'>{{item}}</view>
+      </view>
+    </block>
+  </view>
+</view>
+<view class="urlview">
+  <view class="money">
+    <text class='current'>现价：￥{{vipdetail.price}}</text>
+    <text class='original'>原价：￥{{vipdetail.originalprice}}</text>
+  </view>
+  <view class="topay" catchtap='buyvip'>微信支付</view>
+</view>
